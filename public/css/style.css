@@ -1,0 +1,39 @@
+.header{
+      text-align: center;
+}
+.content{
+        margin-top: 186px;
+        margin-left: 124px;
+        font-size: 105%;
+        margin-bottom: 21%;
+}
+
+.input-field label.active{
+  font-size: 20px;
+}
+/*.material-icons{
+  margin-left: 370px;
+  color:teal;
+} */
+.glyphicon-user:before {
+    margin-left: 60px;
+    color: teal;
+    font-size: 31px;
+}
+.glyphicon-lock:before {
+    content: "\e008";
+    margin-left: 60px;
+    color: teal;
+    font-size: 31px;
+}
+
+
+
+.img-circle {
+    border-radius: 50%;
+    height: 110px;
+    width: 116px;
+}
+/*login page*/
+
+

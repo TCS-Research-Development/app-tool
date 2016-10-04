@@ -26,9 +26,11 @@ app.set('view engine', 'html');
 
 var routes = require('./app/routes/index')(app, express);
 var customer  = require('./app/routes/customer')(app, express);
+var service = require('./app/routes/service')(app, express);
 
 app.use('/', routes);
 app.use('/customers', customer);
+app.use('/services', service);
 
 app.listen(3000);
 console.log('Application running!');

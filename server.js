@@ -26,9 +26,10 @@ app.set('view engine', 'html');
 
 var routes = require('./app/routes/index')(app, express);
 var customer  = require('./app/routes/customer')(app, express);
-
+var stylist  = require('./app/routes/stylist')(app, express);
 app.use('/', routes);
 app.use('/customers', customer);
+app.use('/stylist',stylist);
 
 app.listen(3000);
 console.log('Application running!');

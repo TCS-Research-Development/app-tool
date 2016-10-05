@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('mysql://root:@localhost:3306/sapien');
+var sequelize = new Sequelize('mysql://root:@localhost:3306/sapienssalon');
 var Stylist_Table = sequelize.define("Stylist_Table",{
     Stylist_ID:{
          type:Sequelize.INTEGER,

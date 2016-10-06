@@ -25,10 +25,10 @@ var Service_Table = sequelize.define("Service_Table",{
      }
 });
 
-Service_Table.sync({
-  force: true
-}).then(function() {
-  console.log('created successfully !');
-});
+// Service_Table.sync({
+//   force: true
+// }).then(function() {
+//   console.log('created successfully !');
+// });
 
 module.exports = Service_Table;

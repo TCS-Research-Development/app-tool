@@ -15,18 +15,18 @@ router.get('/get', function(req, res) {
 
 
 router.post('/post', function(req, res) {
-   var service = {};
-       service.Service_ID = req.body.Service_ID;
-       service.Service_Name = req.body.Service_Name;
-       service.Service_Gender = req.body.Service_Gender;
-       service.Service_Charge = req.body.Service_Charge;
-       service.Service_Duration = req.body.Service_Duration;
+      Service.create({
+       Service_ID : req.body.Service_ID,
+       Service_Name : req.body.Service_Name,
+       Service_Gender : req.body.Service_Gender,
+       Service_Charge : req.body.Service_Charge,
+       Service_Duration : req.body.Service_Duration
 
-       Service.bulkCreate(service).then(function() {
+       }).then(function(err) {
+      res.send(err); 
+    },function() {
       res.send('Service added successfully');
-      },function(err) {
-      res.send('Failed to add service'); 
-    });
+      });
 });
 
 return router;

@@ -1,5 +1,10 @@
 var Appointment  = require('../model/appointment');
+var Stylist  = require('../model/stylist');
+var Customer  = require('../model/customer');
+var Service  = require('../model/service');
 var express = require('express');
+
+
 
 module.exports = function(app, express) {
 
@@ -15,6 +20,7 @@ router.get('/get', function(req, res) {
 
 
 router.post('/post', function(req, res) {
+
        Appointment.create({
         Appointment_ID : req.body.Appointment_ID,
         Appointment_StartTime : req.body.Appointment_StartTime,

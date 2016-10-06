@@ -15,18 +15,26 @@ router.get('/get', function(req, res) {
 
 
 router.post('/post', function(req, res) {
-      Service.create({
+
+   Service.create({
        Service_ID : req.body.Service_ID,
        Service_Name : req.body.Service_Name,
        Service_Gender : req.body.Service_Gender,
        Service_Charge : req.body.Service_Charge,
        Service_Duration : req.body.Service_Duration
 
-       }).then(function(err) {
-      res.send(err); 
-    },function() {
-      res.send('Service added successfully');
+    }).then(function() {
+      res.json({
+        "success":true,
+        "message":"Services are inserted successfully"
+    });
+      },function(err) {
+      res.send({
+        "success":false,
+        "message":err,
       });
+    });
+
 });
 
 return router;

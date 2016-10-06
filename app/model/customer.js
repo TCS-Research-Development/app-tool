@@ -20,7 +20,7 @@ var Customer_Table = sequelize.define("Customer_Table",{
         allowNull:false
     },
     Customer_Mobile:{
-        type:Sequelize.INTEGER,
+        type:Sequelize.BIGINT,
         allowNull:false,
         unique:true
     },
@@ -48,12 +48,16 @@ var Customer_Table = sequelize.define("Customer_Table",{
     Customer_Pincode:{
         type:Sequelize.INTEGER,
         allowNull:false
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull:false
     }
 });
-Customer_Table.sync({
-  force: true
-}).then(function() {
-  console.log('created successfully !');
-});
+// Customer_Table.sync({
+//   force: true
+// }).then(function() {
+//   console.log('created successfully !');
+// });
 
 module.exports = Customer_Table;

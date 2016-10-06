@@ -43,10 +43,10 @@ var Stylist_Table = sequelize.define("Stylist_Table",{
         unique:true
     }
 });
-Stylist_Table.sync({
-  force: true
-}).then(function() {
-  console.log('Stylist_Table created successfully !');
-});
+// Stylist_Table.sync({
+//   force: true
+// }).then(function() {
+//   console.log('Stylist_Table created successfully !');
+// });
 
 module.exports = Stylist_Table;

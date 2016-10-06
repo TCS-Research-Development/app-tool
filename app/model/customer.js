@@ -48,6 +48,10 @@ var Customer_Table = sequelize.define("Customer_Table",{
     Customer_Pincode:{
         type:Sequelize.INTEGER,
         allowNull:false
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull:false
     }
 });
 // Customer_Table.sync({

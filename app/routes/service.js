@@ -23,9 +23,15 @@ router.post('/post', function(req, res) {
        service.Service_Duration = req.body.Service_Duration;
 
        Service.bulkCreate(service).then(function() {
-      res.send('Service added successfully');
+      res.json({
+        "success":true,
+        "message":"Values are inserted successfully"
+    });
       },function(err) {
-      res.send('Failed to add service'); 
+      res.send({
+        "success":false,
+        "message":err,
+      });
     });
 });
 

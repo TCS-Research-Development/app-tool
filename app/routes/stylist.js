@@ -26,9 +26,15 @@ router.post('/post', function(req, res) {
         Stylist_Mobile:req.body.Stylist_Mobile,
         Stylist_Email:req.body.Stylist_Email
       }).then(function() {
-      res.send('insert model sucess');
+      res.json({
+        "success":true,
+        "message":"Values are inserted successfully"
+    });
       },function(err) {
-      res.send(err); 
+     res.send({
+        "success":false,
+        "message":err,
+      });
     });
 });
 

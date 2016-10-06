@@ -26,13 +26,48 @@ router.post('/post', function(req, res) {
         Customer_Addr2:req.body.Customer_Addr2,
         Customer_State:req.body.Customer_State,
         Customer_City:req.body.Customer_City,
-        Customer_Pincode:req.body.Customer_Pincode
+        Customer_Pincode:req.body.Customer_Pincode,
+        password:req.body.password
       }).then(function() {
-      res.send('insert model sucess');
+      res.json({
+        "success":true,
+        "message":"Values are inserted successfully"
+    });
       },function(err) {
-      res.send(err); 
+      res.send({
+        "success":false,
+        "message":err,
+      }); 
     });
 });
+
+
+router.post('/login',function(req,res){
+      
+          Customer.findOne({
+            where:{Customer_email:req.body.email},
+            attributes:['Customer_Email','password']
+          }).then(function(customer){   
+              if(!customer){
+                   res.json({
+                      "success":false,
+                      "message":"No such user exists"
+                    })
+              }
+              else if((req.body.username==customer.Customer_Email)||(req.body.password==customer.password)){
+                    res.json({
+                      "success":true,
+                      "message":"Redirected to the home page"
+                    })
+              }
+              else{
+                   res.json({
+                      "success":false,
+                      "message":"Username or Password is incorrect"
+                    })
+              }
+          })
+})
 
 return router;
 }

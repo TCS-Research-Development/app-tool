@@ -15,6 +15,51 @@ router.get('/get', function(req, res) {
 
 
 router.post('/post', function(req, res) {
+   var userReg = /^([a-z])+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+   if(req.body.Customer_Name === undefined ){
+                var resOBJ = {"success":false,"errorcode":100,"error description":"Please enter the username"};
+                return res.json(resOBJ);
+    }
+   else if(req.body.Customer_Email === undefined ){
+                var resOBJ = {"success":false,"errorcode":101,"error description":"Please enter the emailid"};
+                return res.json(resOBJ);
+    }
+    else if(req.body.password === undefined ){
+                var resOBJ = {"success":false,"errorcode":102,"error description":"Please enter the password"};
+                return res.json(resOBJ);
+    }
+    else if(!userReg.test(req.body.Customer_Email)){
+                var resOBJ = {"success":false,"errorcode":103,"error description":"Please enter a valid email id"};
+                return res.json(resOBJ);
+    }
+   else  if(req.body.password.length<7){
+                var resOBJ = {"success":false,"errorcode":104,"error description":"password should be 8 characters long"};
+                return res.json(resOBJ);
+    }
+    else if(req.body.password.search(/(?=.*[a-z])/)){
+                var resOBJ = {"success":false,"errorcode":105,"error description":"password should contain atleast 1 lower case"};
+                return res.json(resOBJ);
+    }
+    else if(req.body.password.search(/(?=.*[A-Z])/)){
+                var resOBJ = {"success":false,"errorcode":106,"error description":"password should contain atleast 1 upper case"};
+                return res.json(resOBJ);
+    }
+    else if(req.body.password.search(/(?=.*[0-9])/)){
+                var resOBJ = {"success":false,"errorcode":107,"error description":"password should contain atleast 1 numeric"};
+                return res.json(resOBJ);
+    }
+    else if(req.body.password.search(/(?=.*[!@#\$%\^&\*])/)){
+                var resOBJ = {"success":false,"errorcode":108,"error description":"password should contain atleast 1 special character"};
+                return res.json(resOBJ);
+    }
+    else if(!/^[A-Za-z]+$/.test(req.body.Customer_Name)){
+                var resOBJ = {"success":false,"errorcode":109,"error description":"name should contain only strings"};
+                return res.json(resOBJ);
+    }
+
+    else{
+
       Customer.create({
         Customer_ID : req.body.Customer_ID,
         Customer_Name : req.body.Customer_Name,
@@ -38,12 +83,20 @@ router.post('/post', function(req, res) {
         "success":false,
         "message":err,
       }); 
-    });
+    })
+    };
 });
 
 
 router.post('/login',function(req,res){
-      
+       var userReg = /^([a-z])+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(!userReg.test(req.body.email)){
+                var resOBJ = {"success":false,"errorcode":110,"error description":"Please enter a valid email id"};
+                return res.json(resOBJ);
+        }
+    else{
+
           Customer.findOne({
             where:{Customer_email:req.body.email},
             attributes:['Customer_Email','password']
@@ -66,7 +119,14 @@ router.post('/login',function(req,res){
                       "message":"Username or Password is incorrect"
                     })
               }
+          },function(err){
+             res.send({
+                   "success":false,
+                   "message":err,
+                    }); 
           })
+
+    }
 })
 
 return router;

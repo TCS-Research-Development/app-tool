@@ -15,6 +15,7 @@ router.get('/get', function(req, res) {
 
 
 router.post('/post', function(req, res) {
+
    var userReg = /^([a-z])+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
    if(req.body.Customer_Name === undefined ){
@@ -77,6 +78,7 @@ router.post('/post', function(req, res) {
       res.json({
         "success":true,
         "message":"Values are inserted successfully"
+
     });
       },function(err) {
       res.send({
